@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Rifqi Ananta — UI/UX & Web Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f3ef;
+            color: #141414;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-image: 
+                linear-gradient(to right, rgba(20, 20, 20, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(20, 20, 20, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .font-editorial {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .zine-card {
+            background: #ffffff;
+            border: 2px solid #141414;
+            border-radius: 18px;
+            box-shadow: 4px 4px 0px #141414;
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+        }
+        @media (min-width: 640px) {
+            .zine-card {
+                box-shadow: 6px 6px 0px #141414;
+            }
+            .zine-card:hover {
+                transform: translate(-3px, -3px);
+                box-shadow: 9px 9px 0px #141414;
+            }
+        }
+        .zine-btn {
+            border: 2px solid #141414;
+            border-radius: 9999px;
+            box-shadow: 3px 3px 0px #141414;
+            transition: all 0.15s ease;
+        }
+        .zine-btn:hover {
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px #141414;
+        }
+        .zine-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #141414;
+        }
+        .ticket-divider {
+            border-top: 2px dashed #141414;
+            position: relative;
+        }
+        .ticket-divider::before, .ticket-divider::after {
+            content: '';
+            position: absolute;
+            top: -11px;
+            width: 20px;
+            height: 20px;
+            background-color: #f4f3ef;
+            border: 2px solid #141414;
+            border-radius: 50%;
+        }
+        .ticket-divider::before { left: -22px; }
+        .ticket-divider::after { right: -22px; }
+        @media (min-width: 640px) {
+            .ticket-divider::before { left: -26px; }
+            .ticket-divider::after { right: -26px; }
+        }
+
+        /* Animasi Smooth Slide + Zoom untuk Carousel Gambar Project */
+        @keyframes slideSmoothNext {
+            0% {
+                opacity: 0;
+                transform: translateX(28px) scale(1.06);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        @keyframes slideSmoothPrev {
+            0% {
+                opacity: 0;
+                transform: translateX(-28px) scale(1.06);
+                filter: blur(2px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        .animate-slide-next {
+            animation: slideSmoothNext 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .animate-slide-prev {
+            animation: slideSmoothPrev 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* Animasi Skena / Zine Spring untuk Popup Modal */
+        @keyframes zinePopIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.84) rotate(-3deg) translateY(24px);
+            }
+            65% {
+                opacity: 1;
+                transform: scale(1.02) rotate(0.8deg) translateY(-4px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg) translateY(0);
+            }
+        }
+        .animate-zine-pop {
+            animation: zinePopIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        /* Animasi Staggered Card saat Switch Stack */
+        @keyframes stackCardIn {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.94) rotate(-1.5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+        }
+        .animate-stack-card {
+            opacity: 0;
+            animation: stackCardIn 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .crt-scanlines {
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.22) 50%
+            );
+            background-size: 100% 4px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#ff3b30] selection:text-white pb-12 sm:pb-16 overflow-x-hidden">
+
+    <!-- FLOATING NAVBAR -->
+    <div class="sticky top-3 sm:top-4 z-40 px-3 sm:px-4">
+        <header class="max-w-5xl mx-auto bg-white/95 backdrop-blur-md border-2 border-[#141414] rounded-full px-4 sm:px-5 py-2.5 sm:py-3 shadow-[4px_4px_0px_#141414] flex items-center justify-between gap-2">
+            <a href="#" class="flex items-center gap-2 group shrink-0">
+                <span class="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-[#ff3b30] border border-[#141414] group-hover:scale-125 transition"></span>
+                <span class="font-editorial font-bold text-sm sm:text-lg tracking-tight">Rifqi Ananta.</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-5 text-sm font-semibold text-neutral-700">
+                <a href="#about" class="hover:text-[#ff3b30] transition">About</a>
+                <a href="#projects" class="hover:text-[#ff3b30] transition">Projects</a>
+                <a href="#toolkit" class="hover:text-[#ff3b30] transition">Toolkit</a>
+                <a href="#application-letter" class="hover:text-[#ff3b30] transition">Job Letter</a>
+                <a href="#presentation-video" class="hover:text-[#ff3b30] transition">Video</a>
+            </nav>
+
+            <a href="#contact" class="zine-btn bg-[#d9ff00] text-[#141414] text-xs sm:text-sm font-bold px-3.5 sm:px-4 py-1.5 shrink-0">
+                Get in Touch ↗
+            </a>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-14 sm:space-y-20">
+
+        <!-- HERO SECTION -->
+        <section id="about" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left Column -->
+            <div class="lg:col-span-7 space-y-5 sm:space-y-6">
+                <div class="inline-flex items-center gap-2 bg-white border-2 border-[#141414] rounded-full px-3 sm:px-3.5 py-1 text-[11px] sm:text-xs font-bold shadow-[2px_2px_0px_#141414]">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+                    <span>Informatics Student @ UAD • UI/UX & Web Design</span>
+                </div>
+
+                <h1 class="font-editorial text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight text-[#141414]">
+                    Informatics student crafting <span class="bg-[#d9ff00] px-2 sm:px-2.5 rounded-md border border-[#141414] inline-block -rotate-1">expressive UI/UX</span> & web experiences.
+                </h1>
+
+                <p class="text-sm sm:text-lg text-neutral-700 leading-relaxed max-w-xl font-medium">
+                    Hi, I'm <strong>Muhammad Rifqi Ananta</strong>. Rooted in Informatics at Universitas Ahmad Dahlan, my core focus is <strong>UI/UX design, interface aesthetics, and front-end web development</strong>. I combine structured logic with bold visual direction to build digital products that feel intuitive and memorable.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
+                    <a href="#projects" class="zine-btn bg-[#141414] text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-2.5 sm:py-3 hover:bg-[#ff3b30]">
+                        Explore Projects ↓
+                    </a>
+                    <a href="#application-letter" class="zine-btn bg-white text-[#141414] text-xs sm:text-sm font-bold px-5 sm:px-6 py-2.5 sm:py-3 hover:bg-[#d9ff00]">
+                        Job Application ↗
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column: Profile Card -->
+            <div class="lg:col-span-5">
+                <div class="zine-card p-4 sm:p-5 bg-white relative sm:rotate-1 hover:rotate-0 transition-transform duration-300">
+                    <div class="absolute -top-3 right-2 sm:-right-3 bg-[#ff3b30] text-white text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full border-2 border-[#141414] shadow-[2px_2px_0px_#141414] rotate-3 sm:rotate-6 z-10">
+                        UI/UX & DESIGN
+                    </div>
+
+                    <!-- FOTO PROFIL (GAMBAR/profil.jpeg) -->
+                    <div class="w-full h-60 sm:h-64 rounded-xl bg-[#1a1a1a] border-2 border-[#141414] overflow-hidden relative group">
+                        <img src="GAMBAR/profil.jpeg" alt="Muhammad Rifqi Ananta" class="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500">
+                    </div>
+
+                    <div class="mt-4">
+                        <h3 class="font-editorial font-bold text-lg sm:text-xl leading-tight">Muhammad Rifqi Ananta</h3>
+                        <p class="text-xs text-neutral-500 font-semibold mt-0.5">Yogyakarta, ID</p>
+                    </div>
+
+                    <div class="ticket-divider my-3.5 sm:my-4"></div>
+
+                    <div class="flex items-center justify-between text-xs font-semibold text-neutral-600 gap-2">
+                        <span></span>
+                        <span class="text-[#141414] font-bold text-right">UI/UX • Web Design • WebGIS</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- SECTION: SELECTED PROJECTS -->
+        <section id="projects" class="zine-card p-5 sm:p-10 bg-[#d9ff00] relative">
+            
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-5 sm:pb-6 border-b-2 border-[#141414]">
+                <div class="max-w-xl">
+                    <span class="inline-block bg-[#141414] text-white text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full mb-2">
+                        Informatics & UI/UX Works
+                    </span>
+                    <h2 class="font-editorial text-2xl sm:text-5xl font-bold tracking-tight">
+                        Selected Web Projects
+                    </h2>
+                    <p class="text-xs sm:text-base text-neutral-800 font-medium mt-2">
+                        A curated showcase of web platforms where visual storytelling, user interface clarity, and interactive mapping come together.
+                    </p>
+                </div>
+                <span class="text-[11px] sm:text-xs font-bold bg-white border-2 border-[#141414] px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-[3px_3px_0px_#141414] self-start md:self-end">
+                    CASE STUDIES [02]
+                </span>
+            </div>
+
+            <!-- 2-Column Lookbook Cards -->
+            <div class="pt-6 sm:pt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+                
+                <!-- PROJECT CARD 1: UAD UKM SHOWCASE (Interval 4.5 Detik) -->
+                <article class="bg-white border-2 border-[#141414] rounded-2xl p-4 sm:p-6 shadow-[5px_5px_0px_#141414] sm:shadow-[6px_6px_0px_#141414] sm:-rotate-1 hover:rotate-0 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3.5 sm:mb-4">
+                            <span class="bg-[#141414] text-[#d9ff00] text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full">
+                                01 // WEB DESIGN & UI/UX
+                            </span>
+                            <span class="text-xs font-bold text-neutral-500">UAD Campus</span>
+                        </div>
+
+                        <!-- Interactive Image Frame -->
+                        <div id="ukm-frame" class="w-full h-52 sm:h-64 rounded-xl bg-[#141414] border-2 border-[#141414] mb-4 sm:mb-5 overflow-hidden relative group">
+                            <img id="ukm-carousel-img" onclick="openLightbox('ukm')" src="GAMBAR/ukm1.png" alt="UAD UKM Website Preview" class="w-full h-full object-cover object-top cursor-zoom-in">
+                            
+                            <div id="ukm-carousel-caption" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute top-3 left-3 right-12 bg-[#141414]/85 backdrop-blur-sm text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-md border border-white/20 pointer-events-none truncate">
+                                01 / Hero Showcase — UKM Seni Musik
+                            </div>
+
+                            <button onclick="changeUkmSlide(-1)" aria-label="Previous Screenshot" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border-2 border-[#141414] shadow-[2px_2px_0px_#141414] flex items-center justify-center font-bold text-sm hover:bg-[#d9ff00] cursor-pointer">
+                                ‹
+                            </button>
+                            <button onclick="changeUkmSlide(1)" aria-label="Next Screenshot" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white border-2 border-[#141414] shadow-[2px_2px_0px_#141414] flex items-center justify-center font-bold text-sm hover:bg-[#d9ff00] cursor-pointer">
+                                ›
+                            </button>
+
+                            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-[#141414]/75 px-2.5 py-1.5 rounded-full">
+                                <button onclick="setUkmSlide(0, 'next')" id="ukm-dot-0" class="w-4 h-2 rounded-full bg-[#d9ff00] transition-all duration-300 cursor-pointer"></button>
+                                <button onclick="setUkmSlide(1, 'next')" id="ukm-dot-1" class="w-2 h-2 rounded-full bg-white/50 transition-all duration-300 cursor-pointer"></button>
+                                <button onclick="setUkmSlide(2, 'next')" id="ukm-dot-2" class="w-2 h-2 rounded-full bg-white/50 transition-all duration-300 cursor-pointer"></button>
+                            </div>
+
+                            <button onclick="openLightbox('ukm')" title="View Full Screenshot" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute bottom-2.5 right-2.5 w-8 h-8 rounded-lg bg-white text-[#141414] border-2 border-[#141414] shadow-[2px_2px_0px_#141414] flex items-center justify-center hover:bg-[#d9ff00] cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <polyline points="9 21 3 21 3 15"></polyline>
+                                    <line x1="21" y1="3" x2="14" y2="10"></line>
+                                    <line x1="3" y1="21" x2="10" y2="14"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <h3 class="font-editorial text-xl sm:text-2xl font-bold mb-2 leading-snug">
+                            UAD Student Activity Unit (UKM) Registration & Showcase
+                        </h3>
+                        <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-5 sm:mb-6">
+                            Designed and developed an engaging web platform for student organization registration at Universitas Ahmad Dahlan. Built to highlight real student activities and vibrant event photography rather than standard administrative forms.
+                        </p>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="pt-3.5 sm:pt-4 border-t-2 border-dashed border-neutral-300 flex items-center justify-between gap-2">
+                        <div class="flex flex-wrap gap-1.5 text-[10px] sm:text-[11px] font-bold">
+                            <span class="bg-[#f4f3ef] px-2 sm:px-2.5 py-1 rounded-md border border-[#141414]">UI/UX</span>
+                            <span class="bg-[#f4f3ef] px-2 sm:px-2.5 py-1 rounded-md border border-[#141414]">Web Showcase</span>
+                        </div>
+                        <a href="https://github.com/rfqinnta/ENGLISH-TASK-UTS" target="_blank" class="zine-btn bg-[#ff3b30] text-white text-xs font-bold px-3.5 sm:px-4 py-1.5 hover:bg-[#a855f7] shrink-0">
+                            Source Code ↗
+                        </a>
+                    </div>
+                </article>
+
+                <!-- PROJECT CARD 2: PANGKALPINANG BEACH WEBGIS (Interval 6.5 Detik + Offset Awal) -->
+                <article class="bg-white border-2 border-[#141414] rounded-2xl p-4 sm:p-6 shadow-[5px_5px_0px_#141414] sm:shadow-[6px_6px_0px_#141414] sm:rotate-1 hover:rotate-0 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3.5 sm:mb-4">
+                            <span class="bg-[#ff3b30] text-white text-[11px] sm:text-xs font-bold px-2.5 sm:px-3 py-1 rounded-full">
+                                02 // WEBGIS & SPATIAL UI
+                            </span>
+                            <span class="text-xs font-bold text-neutral-500">Pangkalpinang</span>
+                        </div>
+
+                        <!-- Interactive Image Frame -->
+                        <div id="gis-frame" class="w-full h-52 sm:h-64 rounded-xl bg-[#141414] border-2 border-[#141414] mb-4 sm:mb-5 overflow-hidden relative group">
+                            <img id="gis-carousel-img" onclick="openLightbox('gis')" src="GAMBAR/pantai1.png" alt="Pangkalpinang Beach WebGIS Preview" class="w-full h-full object-cover object-top cursor-zoom-in">
+                            
+                            <div id="gis-carousel-caption" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute top-3 left-3 right-12 bg-[#141414]/85 backdrop-blur-sm text-white text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-md border border-white/20 pointer-events-none truncate">
+                                01 / Landing — Pantai Tanjung Bunga
+                            </div>
+
+                            <button onclick="changeGisSlide(-1)" aria-label="Previous Map Screenshot" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white text-[#141414] border-2 border-[#141414] shadow-[2px_2px_0px_#141414] flex items-center justify-center font-bold text-sm hover:bg-[#d9ff00] cursor-pointer">
+                                ‹
+                            </button>
+                            <button onclick="changeGisSlide(1)" aria-label="Next Map Screenshot" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute right-2.5 sm:right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white text-[#141414] border-2 border-[#141414] shadow-[2px_2px_0px_#141414] flex items-center justify-center font-bold text-sm hover:bg-[#d9ff00] cursor-pointer">
+                                ›
+                            </button>
+
+                            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 bg-[#141414]/75 px-2.5 py-1.5 rounded-full">
+                                <button onclick="setGisSlide(0, 'next')" id="gis-dot-0" class="w-4 h-2 rounded-full bg-[#d9ff00] transition-all duration-300 cursor-pointer"></button>
+                                <button onclick="setGisSlide(1, 'next')" id="gis-dot-1" class="w-2 h-2 rounded-full bg-white/50 transition-all duration-300 cursor-pointer"></button>
+                            </div>
+
+                            <button onclick="openLightbox('gis')" title="View Full Screenshot" class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute bottom-2.5 right-2.5 w-8 h-8 rounded-lg bg-white text-[#141414] border-2 border-[#141414] shadow-[2px_2px_0px_#141414] flex items-center justify-center hover:bg-[#d9ff00] cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <polyline points="9 21 3 21 3 15"></polyline>
+                                    <line x1="21" y1="3" x2="14" y2="10"></line>
+                                    <line x1="3" y1="21" x2="10" y2="14"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <h3 class="font-editorial text-xl sm:text-2xl font-bold mb-2 leading-snug">
+                            Pangkalpinang Beach Locations WebGIS
+                        </h3>
+                        <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-5 sm:mb-6">
+                            An interactive Geographic Information System mapping coastal destinations across Pangkalpinang. Designed with clean map overlays, intuitive pin markers, and accessible location cards for effortless coastal exploration.
+                        </p>
+                    </div>
+
+                    <!-- Card Footer -->
+                    <div class="pt-3.5 sm:pt-4 border-t-2 border-dashed border-neutral-300 flex items-center justify-between gap-2">
+                        <div class="flex flex-wrap gap-1.5 text-[10px] sm:text-[11px] font-bold">
+                            <span class="bg-[#f4f3ef] px-2 sm:px-2.5 py-1 rounded-md border border-[#141414]">WebGIS</span>
+                            <span class="bg-[#f4f3ef] px-2 sm:px-2.5 py-1 rounded-md border border-[#141414]">Spatial UI</span>
+                        </div>
+                        <a href="https://github.com/rfqinnta/ENGLISH-TASK-UTS2" target="_blank" class="zine-btn bg-[#141414] text-white text-xs font-bold px-3.5 sm:px-4 py-1.5 hover:bg-[#d9ff00] hover:text-[#141414] shrink-0">
+                            Source Code ↗
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECTION: INTERACTIVE TOOLKIT -->
+        <section id="toolkit" class="zine-card p-5 sm:p-10 bg-[#b892ff] relative overflow-hidden">
+            <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#141414_1.2px,transparent_1.2px)] [background-size:16px_16px]"></div>
+
+            <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 sm:pb-6 border-b-2 border-[#141414]">
+                <div>
+                    <span class="inline-block bg-[#141414] text-[#d9ff00] text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-1.5">
+                        Capabilities & Tools
+                    </span>
+                    <h2 class="font-editorial text-2xl sm:text-4xl font-bold text-[#141414]">
+                        Design & Development Stack
+                    </h2>
+                </div>
+
+                <!-- Switcher Pill -->
+                <div class="inline-flex bg-white p-1.5 rounded-full border-2 border-[#141414] shadow-[3px_3px_0px_#141414] self-start sm:self-auto">
+                    <button onclick="setMode('design')" id="tab-design-btn" class="px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold bg-[#141414] text-[#d9ff00] transition-all duration-200 cursor-pointer">
+                        🎨 UI/UX & Visuals
+                    </button>
+                    <button onclick="setMode('dev')" id="tab-dev-btn" class="px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold text-[#141414] hover:bg-black/5 transition-all duration-200 cursor-pointer">
+                        💻 Web & GIS Dev
+                    </button>
+                </div>
+            </div>
+
+            <!-- Design Panel -->
+            <div id="panel-design" class="relative z-10 pt-5 sm:pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+                <div style="animation-delay: 0ms;" class="stack-card animate-stack-card p-4 rounded-2xl bg-white border-2 border-[#141414] shadow-[4px_4px_0px_#141414] hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold text-[#ff3b30]">Interface & Prototyping</span>
+                        <span class="text-[10px] font-editorial font-bold bg-[#d9ff00] border border-[#141414] px-1.5 py-0.5 rounded">01</span>
+                    </div>
+                    <div class="font-editorial font-bold text-base sm:text-lg text-[#141414]">Figma</div>
+                    <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">Wireframing, design systems, interactive prototypes, and responsive layouts.</p>
+                </div>
+
+                <div style="animation-delay: 60ms;" class="stack-card animate-stack-card p-4 rounded-2xl bg-white border-2 border-[#141414] shadow-[4px_4px_0px_#141414] hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold text-[#ff3b30]">User Experience</span>
+                        <span class="text-[10px] font-editorial font-bold bg-[#d9ff00] border border-[#141414] px-1.5 py-0.5 rounded">02</span>
+                    </div>
+                    <div class="font-editorial font-bold text-base sm:text-lg text-[#141414]">UX Research & Flow</div>
+                    <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">User journey mapping, information architecture, and usability testing.</p>
+                </div>
+
+                <div style="animation-delay: 120ms;" class="stack-card animate-stack-card p-4 rounded-2xl bg-white border-2 border-[#141414] shadow-[4px_4px_0px_#141414] hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold text-[#ff3b30]">Visual Direction</span>
+                        <span class="text-[10px] font-editorial font-bold bg-[#d9ff00] border border-[#141414] px-1.5 py-0.5 rounded">03</span>
+                    </div>
+                    <div class="font-editorial font-bold text-base sm:text-lg text-[#141414]">Editorial Web UI</div>
+                    <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">Typography hierarchy, grid systems, and expressive visual storytelling.</p>
+                </div>
+
+                <div style="animation-delay: 180ms;" class="stack-card animate-stack-card p-4 rounded-2xl bg-white border-2 border-[#141414] shadow-[4px_4px_0px_#141414] hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold text-[#ff3b30]">Interactive Maps</span>
+                        <span class="text-[10px] font-editorial font-bold bg-[#d9ff00] border border-[#141414] px-1.5 py-0.5 rounded">04</span>
+                    </div>
+                    <div class="font-editorial font-bold text-base sm:text-lg text-[#141414]">Spatial UI Design</div>
+                    <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">Designing intuitive map controls, custom markers, and location cards.</p>
+                </div>
+            </div>
+
+            <!-- Dev Panel -->
+            <div id="panel-dev" class="hidden relative z-10 pt-5 sm:pt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
+                <div style="animation-delay: 0ms;" class="stack-card p-4 rounded-2xl bg-white border-2 border-[#141414] shadow-[4px_4px_0px_#141414] hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold text-[#ff3b30]">Frontend</span>
+                        <span class="text-[10px] font-editorial font-bold bg-[#141414] text-[#d9ff00] px-1.5 py-0.5 rounded">01</span>
+                    </div>
+                    <div class="font-editorial font-bold text-base sm:text-lg text-[#141414]">HTML, CSS & Tailwind</div>
+                    <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">Turning Figma designs into responsive, pixel-accurate web interfaces.</p>
+                </div>
+
+                <div style="animation-delay: 60ms;" class="stack-card p-4 rounded-2xl bg-white border-2 border-[#141414] shadow-[4px_4px_0px_#141414] hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold text-[#ff3b30]">Web Applications</span>
+                        <span class="text-[10px] font-editorial font-bold bg-[#141414] text-[#d9ff00] px-1.5 py-0.5 rounded">02</span>
+                    </div>
+                    <div class="font-editorial font-bold text-base sm:text-lg text-[#141414]">PHP & Laravel</div>
+                    <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">Building dynamic registration platforms, databases, and backend logic.</p>
+                </div>
+
+                <div style="animation-delay: 120ms;" class="stack-card p-4 rounded-2xl bg-white border-2 border-[#141414] shadow-[4px_4px_0px_#141414] hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold text-[#ff3b30]">Spatial Mapping</span>
+                        <span class="text-[10px] font-editorial font-bold bg-[#141414] text-[#d9ff00] px-1.5 py-0.5 rounded">03</span>
+                    </div>
+                    <div class="font-editorial font-bold text-base sm:text-lg text-[#141414]">QGIS & WebGIS</div>
+                    <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">Spatial data processing, interactive map layers, and geographic visualization.</p>
+                </div>
+
+                <div style="animation-delay: 180ms;" class="stack-card p-4 rounded-2xl bg-white border-2 border-[#141414] shadow-[4px_4px_0px_#141414] hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[11px] font-bold text-[#ff3b30]">Workflow</span>
+                        <span class="text-[10px] font-editorial font-bold bg-[#141414] text-[#d9ff00] px-1.5 py-0.5 rounded">04</span>
+                    </div>
+                    <div class="font-editorial font-bold text-base sm:text-lg text-[#141414]">Git & GitHub</div>
+                    <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">Version control and collaborative repository management.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: JOB APPLICATION LETTER -->
+        <section id="application-letter" class="space-y-5 sm:space-y-6">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+                <div>
+                    <span class="inline-block bg-[#ff3b30] text-white text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full border border-[#141414] shadow-[2px_2px_0px_#141414] mb-2">
+                        PROFESSIONAL ENGLISH TASK
+                    </span>
+                    <h2 class="font-editorial text-3xl sm:text-5xl font-bold tracking-tight text-[#141414]">
+                        Job Application <span class="bg-[#d9ff00] px-2 rounded-md border border-[#141414] inline-block">Letter.</span>
+                    </h2>
+                </div>
+
+                <button onclick="copyApplicationLetter()" id="copy-letter-btn" class="zine-btn bg-white text-[#141414] text-xs font-bold px-4 py-2 self-start sm:self-end hover:bg-[#d9ff00] cursor-pointer">
+                    Copy Letter Text 📋
+                </button>
+            </div>
+
+            <!-- Letter Sheet Card -->
+            <div class="zine-card p-5 sm:p-10 bg-white relative">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-4 sm:pb-5 mb-5 sm:mb-6 border-b-2 border-[#141414]">
+                    <span class="font-editorial text-xs sm:text-sm font-bold tracking-wider uppercase text-[#141414]">
+                        APPLICATION LETTER
+                    </span>
+                    <span class="bg-[#141414] text-[#d9ff00] text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full">
+                        POSITION: UI/UX DESIGNER • TECHNOVA DIGITAL SOLUTIONS
+                    </span>
+                </div>
+
+                <div id="letter-content" class="space-y-4 sm:space-y-5 text-sm sm:text-base text-neutral-800 leading-relaxed max-w-3xl">
+                    <p class="font-bold text-[#141414]">Dear HR Manager,</p>
+
+                    <p>
+                        I would like to apply for the <strong>UI/UX Designer</strong> position at <strong>TechNova Digital Solutions</strong>. I study Informatics at Universitas Ahmad Dahlan, and what I enjoy most is the moment a rough sketch becomes something people can actually click through and use.
+                    </p>
+
+                    <p>
+                        I do most of my design work in Figma, where I build wireframes, design systems, and interactive prototypes. Before designing a screen, I try to map the user’s journey and organise the information so nothing important is hard to find. I also write the front end myself with HTML, CSS, and Tailwind, and I have worked with PHP, Laravel, QGIS, and Git in my projects.
+                    </p>
+
+                    <p>
+                        This semester I did not do a formal internship, so my experience comes from two academic projects. In the first, I designed a way for students to register for <strong>Student Activity Units (UKM)</strong> at my campus. Instead of a plain form, I built a showcase website with real event photos and bold typography, so students can see what each unit is like before they join. In the second, <strong>Pangkalpinang Beach Locations WebGIS</strong>, I designed an interactive map with custom pin markers and location cards. The main challenge was keeping the map clean and easy to read, so each card shows only the essential details.
+                    </p>
+
+                    <p>
+                        Your announcement asks for basic technical skills and project experience. These two projects show that I can design with users in mind and also build my own designs, which should make it easier for me to work with your developers.
+                    </p>
+
+                    <p>
+                        My portfolio is available right on this page — feel free to jump straight to the showcase banner below.
+                    </p>
+
+                    <p>
+                        Thank you for your time. I look forward to hearing from you.
+                    </p>
+
+                    <div class="pt-3 sm:pt-4">
+                        <p class="text-neutral-600">Yours sincerely,</p>
+                        <p class="font-editorial text-lg sm:text-xl font-bold text-[#141414] mt-1">Muhammad Rifqi Ananta</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MY PORTFOLIO SHOWCASE BAR -->
+            <div class="zine-card bg-[#d9ff00] p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <span class="text-[11px] font-bold text-neutral-700 uppercase tracking-wider block">
+                        MY PORTFOLIO SHOWCASE
+                    </span>
+                    <span class="text-xs sm:text-sm font-bold text-[#141414]">
+                        Explore interactive case studies & live source codes above
+                    </span>
+                </div>
+                <a href="#projects" class="zine-btn bg-[#141414] text-white text-xs font-bold px-5 py-2.5 text-center shrink-0 hover:bg-[#ff3b30]">
+                    View My Portfolio Projects ↑
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION: PRESENTATION VIDEO -->
+        <section id="presentation-video" class="space-y-5 sm:space-y-6">
+            <div>
+                <span class="inline-block bg-[#141414] text-[#d9ff00] text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full border border-[#141414] mb-2">
+                    PROFESSIONAL ENGLISH TASK
+                </span>
+                <h2 class="font-editorial text-3xl sm:text-5xl font-bold tracking-tight text-[#141414]">
+                    Presentation <span class="bg-[#ff3b30] text-white px-2 rounded-md border border-[#141414] inline-block">Video.</span>
+                </h2>
+            </div>
+
+            <div class="zine-card p-5 sm:p-10 bg-white grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+                
+                <div class="lg:col-span-5 space-y-4">
+                    <span class="inline-block bg-[#d9ff00] border border-[#141414] text-[11px] font-bold px-2.5 py-1 rounded-md tracking-wider uppercase">
+                        VIDEO PITCH • UI/UX ROLE
+                    </span>
+                    <h3 class="font-editorial text-2xl sm:text-3xl font-bold leading-tight text-[#141414]">
+                        From Wireframes to Working Web & Map Interfaces
+                    </h3>
+                    <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+                        A quick walkthrough of how I approach UI/UX design — from structuring layouts in <strong>Figma</strong> to coding responsive interfaces with <strong>HTML, CSS, Tailwind</strong>, and interactive <strong>WebGIS</strong> maps.
+                    </p>
+
+                    <div class="pt-1">
+                        <a id="youtube-external-link" href="#presentation-video" onclick="handleVideoLinkClick(event)" class="zine-btn inline-flex items-center gap-2 bg-[#141414] text-white text-xs sm:text-sm font-bold px-5 py-2.5 hover:bg-[#ff3b30]">
+                            <span>Open on YouTube</span>
+                            <span>↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="w-full aspect-video rounded-2xl bg-[#141414] border-2 border-[#141414] shadow-[4px_4px_0px_#141414] overflow-hidden relative">
+                        
+                        <iframe 
+                            id="youtube-iframe" 
+                            class="w-full h-full hidden" 
+                            src="" 
+                            title="Muhammad Rifqi Ananta — Presentation Video" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+
+                        <div id="video-placeholder" class="w-full h-full flex flex-col items-center justify-center text-center p-5 sm:p-8 relative">
+                            <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#d9ff00_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                            
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#ff3b30] border-2 border-white flex items-center justify-center shadow-[3px_3px_0px_#d9ff00] mb-3 sm:mb-4 relative z-10">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-7 sm:h-7 text-white ml-1" viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+
+                            <span class="bg-[#d9ff00] text-[#141414] text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full mb-2 relative z-10">
+                                YOUTUBE PLAYER READY
+                            </span>
+                            <h4 class="font-editorial text-white text-base sm:text-xl font-bold relative z-10">
+                                Video Coming Soon
+                            </h4>
+                            <p class="text-[11px] sm:text-xs text-neutral-400 max-w-sm mt-1 relative z-10">
+                                Ready to stream directly here once the YouTube link is added.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT CARD -->
+        <section id="contact" class="zine-card p-6 sm:p-10 bg-[#141414] text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div class="space-y-2">
+                <span class="inline-block bg-[#d9ff00] text-[#141414] text-xs font-bold px-3 py-1 rounded-full">
+                    Let's Collaborate
+                </span>
+                <h2 class="font-editorial text-2xl sm:text-4xl font-bold">
+                    Got a UI/UX or web project in mind?
+                </h2>
+                <p class="text-xs sm:text-sm text-neutral-400">
+                    Open for UI/UX design collaborations, front-end builds, and WebGIS projects.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-3 w-full md:w-auto">
+                <button onclick="openEmailModal()" class="zine-btn bg-[#ff3b30] text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-3 text-center flex-1 md:flex-none cursor-pointer hover:bg-[#d9ff00] hover:text-[#141414]">
+                    Email Me ✉
+                </button>
+                <a href="https://github.com/rfqinnta" target="_blank" class="zine-btn bg-white text-[#141414] text-xs sm:text-sm font-bold px-5 sm:px-6 py-3 text-center flex-1 md:flex-none hover:bg-[#d9ff00]">
+                    GitHub ↗
+                </a>
+            </div>
+        </section>
+
+        <!-- BOTTOM COPYRIGHT BAR -->
+        <footer class="pt-4 border-t-2 border-dashed border-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-bold text-neutral-600">
+            <span>© 2026 Muhammad Rifqi Ananta. All rights reserved.</span>
+            <span class="bg-white border-2 border-[#141414] text-[#141414] px-3.5 py-1 rounded-full shadow-[2px_2px_0px_#141414] tracking-wider uppercase text-[11px]">
+                DESIGNED BY <span class="text-[#ff3b30]">RFQINNTA</span>
+            </span>
+        </footer>
+
+    </main>
+
+    <!-- LIGHTBOX POPUP MODAL -->
+    <div id="lightbox-modal" onclick="closeLightboxOnBackdrop(event)" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 transition-opacity duration-200">
+        <div id="lightbox-dialog" class="bg-white border-2 border-[#141414] rounded-2xl shadow-[6px_6px_0px_#d9ff00] sm:shadow-[10px_10px_0px_#d9ff00] max-w-4xl w-full overflow-hidden flex flex-col">
+            
+            <div class="flex items-center justify-between gap-2 px-4 sm:px-5 py-3 bg-[#141414] text-white border-b-2 border-[#141414]">
+                <div class="flex items-center gap-2 min-w-0">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#ff3b30] animate-ping shrink-0"></span>
+                    <span id="lightbox-caption" class="font-editorial text-[11px] sm:text-sm font-bold tracking-wide text-[#d9ff00] truncate">
+                        Screenshot Preview
+                    </span>
+                </div>
+                <button onclick="closeLightbox()" class="bg-[#ff3b30] text-white text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full border border-white/20 hover:bg-white hover:text-[#141414] transition cursor-pointer shrink-0">
+                    ✕ Close
+                </button>
+            </div>
+
+            <div class="relative bg-[#121212] flex items-center justify-center p-2.5 sm:p-5 max-h-[80vh] overflow-hidden">
+                <img id="lightbox-img" src="" alt="Full Screenshot Preview" class="max-h-[70vh] sm:max-h-[72vh] w-auto object-contain rounded-lg border border-white/15 transition-all duration-300">
+                
+                <div class="crt-scanlines absolute inset-0 pointer-events-none opacity-40"></div>
+
+                <button onclick="navigateLightbox(-1)" aria-label="Previous Image" class="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-[#141414] border-2 border-[#141414] shadow-[3px_3px_0px_#141414] flex items-center justify-center font-bold text-lg hover:bg-[#d9ff00] hover:scale-110 transition cursor-pointer z-10">
+                    ‹
+                </button>
+                <button onclick="navigateLightbox(1)" aria-label="Next Image" class="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white text-[#141414] border-2 border-[#141414] shadow-[3px_3px_0px_#141414] flex items-center justify-center font-bold text-lg hover:bg-[#d9ff00] hover:scale-110 transition cursor-pointer z-10">
+                    ›
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- EMAIL POPUP MODAL -->
+    <div id="email-modal" onclick="closeEmailOnBackdrop(event)" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div id="email-dialog" class="bg-white border-2 border-[#141414] rounded-2xl shadow-[6px_6px_0px_#ff3b30] sm:shadow-[8px_8px_0px_#ff3b30] max-w-md w-full p-5 sm:p-7 relative">
+            
+            <div class="flex items-center justify-between mb-4">
+                <span class="bg-[#d9ff00] border border-[#141414] text-xs font-bold px-3 py-1 rounded-full">
+                    DIRECT CONTACT
+                </span>
+                <button onclick="closeEmailModal()" class="w-8 h-8 rounded-full bg-[#f4f3ef] border-2 border-[#141414] font-bold text-xs hover:bg-[#ff3b30] hover:text-white transition cursor-pointer">
+                    ✕
+                </button>
+            </div>
+
+            <h3 class="font-editorial text-2xl font-bold mb-1">Drop Me an Email</h3>
+            <p class="text-xs sm:text-sm text-neutral-600 mb-5">
+                Copy my university email address below or launch your preferred mail client directly.
+            </p>
+
+            <div class="flex items-center justify-between gap-2 bg-[#f4f3ef] border-2 border-[#141414] rounded-xl p-3 mb-5">
+                <span id="my-email-text" class="font-mono text-xs sm:text-sm font-bold text-[#141414] truncate select-all">
+                    2300018203@webmail.uad.ac.id
+                </span>
+                <button onclick="copyEmailAddress()" id="copy-email-btn" class="shrink-0 bg-[#141414] text-[#d9ff00] text-xs font-bold px-3 py-1.5 rounded-lg hover:bg-[#ff3b30] hover:text-white transition cursor-pointer">
+                    Copy
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
+                <a href="mailto:2300018203@webmail.uad.ac.id" class="zine-btn bg-[#ff3b30] text-white text-xs font-bold py-2.5 text-center">
+                    Open Mail App ↗
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=2300018203@webmail.uad.ac.id" target="_blank" class="zine-btn bg-white text-[#141414] text-xs font-bold py-2.5 text-center hover:bg-[#d9ff00]">
+                    Open Gmail Web ↗
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // KONFIGURASI VIDEO YOUTUBE
+        // ==========================================
+        const YOUTUBE_VIDEO_URL = ""; 
+
+        function initYoutubeVideo() {
+            if (!YOUTUBE_VIDEO_URL || YOUTUBE_VIDEO_URL.trim() === "") return;
+
+            let videoId = "";
+            const url = YOUTUBE_VIDEO_URL.trim();
+
+            if (url.includes("youtu.be/")) {
+                videoId = url.split("youtu.be/")[1].split("?")[0];
+            } else if (url.includes("watch?v=")) {
+                videoId = url.split("watch?v=")[1].split("&")[0];
+            } else if (url.includes("embed/")) {
+                videoId = url.split("embed/")[1].split("?")[0];
+            }
+
+            if (videoId) {
+                const iframe = document.getElementById("youtube-iframe");
+                const placeholder = document.getElementById("video-placeholder");
+                const extLink = document.getElementById("youtube-external-link");
+
+                iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+                iframe.classList.remove("hidden");
+                placeholder.classList.add("hidden");
+
+                extLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+                extLink.target = "_blank";
+                extLink.removeAttribute("onclick");
+            }
+        }
+
+        function handleVideoLinkClick(e) {
+            if (!YOUTUBE_VIDEO_URL || YOUTUBE_VIDEO_URL.trim() === "") {
+                e.preventDefault();
+                alert("Video YouTube belum diupload. Nanti tinggal kirim link YouTube-nya, langsung aktif di sini!");
+            }
+        }
+
+        initYoutubeVideo();
+
+        // ==========================================
+        // TAB SWITCHER TOOLKIT DENGAN ANIMASI STAGGER
+        // ==========================================
+        function setMode(mode) {
+            const panelDesign = document.getElementById('panel-design');
+            const panelDev = document.getElementById('panel-dev');
+            const btnDesign = document.getElementById('tab-design-btn');
+            const btnDev = document.getElementById('tab-dev-btn');
+
+            const activePanel = mode === 'design' ? panelDesign : panelDev;
+            const inactivePanel = mode === 'design' ? panelDev : panelDesign;
+
+            inactivePanel.classList.add('hidden');
+            activePanel.classList.remove('hidden');
+
+            const cards = activePanel.querySelectorAll('.stack-card');
+            cards.forEach((card) => {
+                card.classList.remove('animate-stack-card');
+                void card.offsetWidth;
+                card.classList.add('animate-stack-card');
+            });
+
+            if (mode === 'design') {
+                btnDesign.className = "px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold bg-[#141414] text-[#d9ff00] transition-all duration-200 cursor-pointer";
+                btnDev.className = "px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold text-[#141414] hover:bg-black/5 transition-all duration-200 cursor-pointer";
+            } else {
+                btnDev.className = "px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold bg-[#141414] text-[#d9ff00] transition-all duration-200 cursor-pointer";
+                btnDesign.className = "px-3.5 sm:px-4 py-1.5 rounded-full text-xs font-bold text-[#141414] hover:bg-black/5 transition-all duration-200 cursor-pointer";
+            }
+        }
+
+        // ==========================================
+        // SLIDESHOW 1: UKM UAD (4.5 DETIK + SMOOTH SLIDE)
+        // ==========================================
+        const ukmSlides = [
+            { src: 'GAMBAR/ukm1.png', caption: '01 / Hero Showcase — UKM Seni Musik' },
+            { src: 'GAMBAR/ukm2.png', caption: '02 / Directory Grid — Semua Unit Kegiatan Mahasiswa' },
+            { src: 'GAMBAR/ukm3.png', caption: '03 / Club Profile & Registration Flow' }
+        ];
+        let currentUkmIndex = 0;
+        let ukmAutoTimer = null;
+        let isUkmHovered = false;
+
+        function setUkmSlide(index, direction = 'next') {
+            currentUkmIndex = index;
+            const imgEl = document.getElementById('ukm-carousel-img');
+            const capEl = document.getElementById('ukm-carousel-caption');
+            
+            imgEl.src = ukmSlides[currentUkmIndex].src;
+            imgEl.classList.remove('animate-slide-next', 'animate-slide-prev');
+            void imgEl.offsetWidth;
+            imgEl.classList.add(direction === 'prev' ? 'animate-slide-prev' : 'animate-slide-next');
+
+            capEl.textContent = ukmSlides[currentUkmIndex].caption;
+
+            for (let i = 0; i < ukmSlides.length; i++) {
+                const dot = document.getElementById(`ukm-dot-${i}`);
+                dot.className = i === currentUkmIndex
+                    ? "w-4 h-2 rounded-full bg-[#d9ff00] transition-all duration-300 cursor-pointer"
+                    : "w-2 h-2 rounded-full bg-white/50 transition-all duration-300 cursor-pointer";
+            }
+        }
+
+        function changeUkmSlide(step) {
+            let nextIndex = (currentUkmIndex + step + ukmSlides.length) % ukmSlides.length;
+            setUkmSlide(nextIndex, step < 0 ? 'prev' : 'next');
+            startUkmTimer();
+        }
+
+        function startUkmTimer() {
+            clearInterval(ukmAutoTimer);
+            ukmAutoTimer = setInterval(() => {
+                if (!isUkmHovered && !isLightboxOpen) {
+                    setUkmSlide((currentUkmIndex + 1) % ukmSlides.length, 'next');
+                }
+            }, 4500); // 4.5 Detik
+        }
+
+        const ukmFrame = document.getElementById('ukm-frame');
+        ukmFrame.addEventListener('mouseenter', () => { isUkmHovered = true; });
+        ukmFrame.addEventListener('mouseleave', () => { isUkmHovered = false; });
+
+        // ==========================================
+        // SLIDESHOW 2: WEBGIS PANTAI (6.5 DETIK + STAGGERED START)
+        // ==========================================
+        const gisSlides = [
+            { src: 'GAMBAR/pantai1.png', caption: '01 / Landing — Pantai Tanjung Bunga' },
+            { src: 'GAMBAR/pantai2.png', caption: '02 / Interactive Map & Coastal Details' }
+        ];
+        let currentGisIndex = 0;
+        let gisAutoTimer = null;
+        let isGisHovered = false;
+
+        function setGisSlide(index, direction = 'next') {
+            currentGisIndex = index;
+            const imgEl = document.getElementById('gis-carousel-img');
+            const capEl = document.getElementById('gis-carousel-caption');
+            
+            imgEl.src = gisSlides[currentGisIndex].src;
+            imgEl.classList.remove('animate-slide-next', 'animate-slide-prev');
+            void imgEl.offsetWidth;
+            imgEl.classList.add(direction === 'prev' ? 'animate-slide-prev' : 'animate-slide-next');
+
+            capEl.textContent = gisSlides[currentGisIndex].caption;
+
+            for (let i = 0; i < gisSlides.length; i++) {
+                const dot = document.getElementById(`gis-dot-${i}`);
+                dot.className = i === currentGisIndex
+                    ? "w-4 h-2 rounded-full bg-[#d9ff00] transition-all duration-300 cursor-pointer"
+                    : "w-2 h-2 rounded-full bg-white/50 transition-all duration-300 cursor-pointer";
+            }
+        }
+
+        function changeGisSlide(step) {
+            let nextIndex = (currentGisIndex + step + gisSlides.length) % gisSlides.length;
+            setGisSlide(nextIndex, step < 0 ? 'prev' : 'next');
+            startGisTimer();
+        }
+
+        function startGisTimer() {
+            clearInterval(gisAutoTimer);
+            gisAutoTimer = setInterval(() => {
+                if (!isGisHovered && !isLightboxOpen) {
+                    setGisSlide((currentGisIndex + 1) % gisSlides.length, 'next');
+                }
+            }, 6500); // 6.5 Detik (Asinkron biar gak barengan)
+        }
+
+        const gisFrame = document.getElementById('gis-frame');
+        gisFrame.addEventListener('mouseenter', () => { isGisHovered = true; });
+        gisFrame.addEventListener('mouseleave', () => { isGisHovered = false; });
+
+        // Jalankan timer dengan jeda awal agar bergantian secara alami
+        startUkmTimer();
+        setTimeout(() => {
+            startGisTimer();
+        }, 1800);
+
+        // ==========================================
+        // LIGHTBOX FULLSCREEN
+        // ==========================================
+        let activeProjectPopup = 'ukm';
+        let isLightboxOpen = false;
+
+        function openLightbox(project) {
+            activeProjectPopup = project;
+            isLightboxOpen = true;
+            updateLightboxContent('next');
+
+            const modal = document.getElementById('lightbox-modal');
+            const dialog = document.getElementById('lightbox-dialog');
+
+            modal.classList.remove('hidden');
+            dialog.classList.remove('animate-zine-pop');
+            void dialog.offsetWidth;
+            dialog.classList.add('animate-zine-pop');
+
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            isLightboxOpen = false;
+            document.getElementById('lightbox-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function closeLightboxOnBackdrop(event) {
+            if (event.target.id === 'lightbox-modal') closeLightbox();
+        }
+
+        function updateLightboxContent(direction = 'next') {
+            const lbImg = document.getElementById('lightbox-img');
+            const lbCap = document.getElementById('lightbox-caption');
+
+            if (activeProjectPopup === 'ukm') {
+                lbImg.src = ukmSlides[currentUkmIndex].src;
+                lbCap.textContent = `UAD UKM SHOWCASE // ${ukmSlides[currentUkmIndex].caption}`;
+            } else {
+                lbImg.src = gisSlides[currentGisIndex].src;
+                lbCap.textContent = `PANGKALPINANG WEBGIS // ${gisSlides[currentGisIndex].caption}`;
+            }
+
+            lbImg.classList.remove('animate-slide-next', 'animate-slide-prev');
+            void lbImg.offsetWidth;
+            lbImg.classList.add(direction === 'prev' ? 'animate-slide-prev' : 'animate-slide-next');
+        }
+
+        function navigateLightbox(step) {
+            if (activeProjectPopup === 'ukm') changeUkmSlide(step);
+            else changeGisSlide(step);
+            updateLightboxContent(step < 0 ? 'prev' : 'next');
+        }
+
+        // Copy Application Letter
+        function copyApplicationLetter() {
+            const letterText = document.getElementById('letter-content').innerText;
+            const btn = document.getElementById('copy-letter-btn');
+
+            navigator.clipboard.writeText(letterText).then(() => {
+                btn.textContent = 'Letter Copied! ✓';
+                btn.classList.add('bg-emerald-500', 'text-white');
+                setTimeout(() => {
+                    btn.textContent = 'Copy Letter Text 📋';
+                    btn.classList.remove('bg-emerald-500', 'text-white');
+                }, 2000);
+            });
+        }
+
+        // Email Modal
+        function openEmailModal() {
+            const modal = document.getElementById('email-modal');
+            const dialog = document.getElementById('email-dialog');
+            modal.classList.remove('hidden');
+
+            dialog.classList.remove('animate-zine-pop');
+            void dialog.offsetWidth;
+            dialog.classList.add('animate-zine-pop');
+        }
+
+        function closeEmailModal() {
+            document.getElementById('email-modal').classList.add('hidden');
+        }
+
+        function closeEmailOnBackdrop(event) {
+            if (event.target.id === 'email-modal') closeEmailModal();
+        }
+
+        function copyEmailAddress() {
+            const emailText = document.getElementById('my-email-text').textContent.trim();
+            const copyBtn = document.getElementById('copy-email-btn');
+
+            navigator.clipboard.writeText(emailText).then(() => {
+                copyBtn.textContent = 'Copied! ✓';
+                copyBtn.classList.remove('bg-[#141414]', 'text-[#d9ff00]');
+                copyBtn.classList.add('bg-emerald-500', 'text-white');
+
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy';
+                    copyBtn.classList.add('bg-[#141414]', 'text-[#d9ff00]');
+                    copyBtn.classList.remove('bg-emerald-500', 'text-white');
+                }, 2000);
+            });
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeEmailModal();
+            }
+            if (isLightboxOpen && e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (isLightboxOpen && e.key === 'ArrowRight') navigateLightbox(1);
+        });
+    </script>
+</body>
+</html>
